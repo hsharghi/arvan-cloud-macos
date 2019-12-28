@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +674,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ArvanCloud" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -700,10 +701,57 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
+        <!--Preferences-->
+        <scene sceneID="JXc-ub-0NR">
+            <objects>
+                <viewController title="Preferences" storyboardIdentifier="PreferencesViewController" id="5bH-wv-WMf" customClass="PreferencesViewController" customModule="ArvanCloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="uQd-32-W8g">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="141"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K7I-0t-0pW">
+                                <rect key="frame" x="18" y="105" width="51" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="API Key" id="HKm-9D-IdJ">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eVa-Pd-uWR">
+                                <rect key="frame" x="20" y="76" width="410" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="DAm-oL-4kU">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WVy-KH-h3s">
+                                <rect key="frame" x="185" y="13" width="81" height="32"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZD5-UK-rWy">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="eVa-Pd-uWR" firstAttribute="leading" secondItem="uQd-32-W8g" secondAttribute="leading" constant="20" id="AUc-Hx-zdE"/>
+                            <constraint firstItem="K7I-0t-0pW" firstAttribute="top" secondItem="uQd-32-W8g" secondAttribute="top" constant="20" id="Agl-NL-aQR"/>
+                            <constraint firstItem="eVa-Pd-uWR" firstAttribute="top" secondItem="K7I-0t-0pW" secondAttribute="bottom" constant="8" id="B45-An-kAL"/>
+                            <constraint firstItem="K7I-0t-0pW" firstAttribute="leading" secondItem="uQd-32-W8g" secondAttribute="leading" constant="20" id="KC8-Pj-sR5"/>
+                            <constraint firstItem="WVy-KH-h3s" firstAttribute="centerX" secondItem="uQd-32-W8g" secondAttribute="centerX" id="KYw-kZ-nxU"/>
+                            <constraint firstAttribute="trailing" secondItem="eVa-Pd-uWR" secondAttribute="trailing" constant="20" id="xmp-wR-fWG"/>
+                            <constraint firstAttribute="bottom" secondItem="WVy-KH-h3s" secondAttribute="bottom" constant="20" id="xn6-ul-fFi"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="sPa-0f-rQc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="693" y="170.5"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="ArvanCloud" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>

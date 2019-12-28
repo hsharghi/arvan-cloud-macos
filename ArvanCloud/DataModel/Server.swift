@@ -10,19 +10,49 @@ import Alamofire
 import ObjectMapper
 import Foundation
 
+class ServerSpec: MappableModel {
+
+    var id: String?
+    var diskSpace: Int?
+    var ram: Int?
+    var numberOfCPUs: Int?
+    
+    required init?(map: Map) {
+         super.init(map: map)
+     }
+     
+     override func mapping(map: Map) {
+         
+         super.mapping(map: map)
+        id <- map["id"]
+        diskSpace <- map["disk"]
+        ram <- map["ram"]
+        numberOfCPUs <- map["vcpus"]
+    }
+}
+
+
 class Server: MappableModel {
     
+    enum Status: String {
+        case active = "ACTIVE"
+        case inActive = "INACTIVE"
+    }
     
-    var flag: String?
-    var country:  String?
-    var cityCode: String?
-    var city: String?
-    var dataCenterCode: String?
-    var dataCenterName: String?
-    var code: String?
-    var canCreate: Bool?
-    var isDefault: Bool?
-    var isVisible: Bool?
+    private var statusString: String? {
+        didSet {
+            if let statusString = statusString {
+                status = Status(rawValue: statusString) ?? .inActive
+            }
+        }
+    }
+    var id: String?
+    var ip: String?
+    var name: String?
+    var status: Status = .inActive
+    var os: String?
+    var osVersion: String?
+    var specs: ServerSpec?
     
     required init?(map: Map) {
         super.init(map: map)
@@ -32,17 +62,13 @@ class Server: MappableModel {
         
         super.mapping(map: map)
         
-        flag <- map["flag"]
-        country <- map["country"]
-        cityCode <- map["city_code"]
-        city <- map["city"]
-        dataCenterCode <- map["dc_code"]
-        dataCenterName <- map["dc"]
-        code <- map["code"]
-        canCreate <- map["create"]
-        isDefault <- map["default"]
-        isVisible <- map["visible"]
-        
+        id <- map["id"]
+        ip <- map["addresses.public1.addr"]
+        name <- map["name"]
+        status <- map["status"]
+        os <- map["os"]
+        osVersion <- map["os_version"]
+        specs <- map["flavor"]
         
     }
     
@@ -62,14 +88,14 @@ class Server: MappableModel {
     }
     
     
-    class func getAll(_ completionHandler: @escaping (_ result: [Server]?, _ error: AppError?) -> Void) -> Void {
-        MappableModel.get(result: Server.List.self, endPoint: "region") { (serverList, error) in
+    class func get(for datacenter: String, _ completionHandler: @escaping (_ result: [Server]?, _ error: AppError?) -> Void) -> Void {
+        MappableModel.get(result: Server.List.self, endPoint: "regions/\(datacenter)/servers") { (serverList, error) in
             guard error == nil else {
                 completionHandler(nil, error)
                 return
             }
             
-            completionHandler(serverList?.servers as? [Server] , nil)
+            completionHandler(serverList?.servers , nil)
             
         }
     }

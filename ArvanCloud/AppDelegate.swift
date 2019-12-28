@@ -47,6 +47,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func cancelBurritoOrder() {
         print("Canceling your order :(")
     }
+    
+    @objc func showPreferences() {
+        
+    }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application

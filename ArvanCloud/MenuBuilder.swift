@@ -20,7 +20,7 @@ class MenuBuilder {
     
     private let preferencesMenuItem = NSMenuItem(
         title: "Preferences",
-        action: #selector(AppDelegate.orderABurrito),
+        action: #selector(AppDelegate.showPreferences),
         keyEquivalent: "")
     
     
@@ -30,28 +30,38 @@ class MenuBuilder {
     
     var regions = [Region]() {
         didSet {
-            generateMenuItems()
+            generateMainMenuItems()
         }
     }
     
     
-    func generateMenuItems() {
-        var regionMenuItems = [
-            NSMenuItem(
-                title: "No regions",
-                action: #selector(AppDelegate.orderABurrito),
-                keyEquivalent: "")
-        ]
+    func generateMainMenuItems() {
+//        var regionMenuItems = [
+//            NSMenuItem(
+//                title: "No regions",
+//                action: #selector(AppDelegate.orderABurrito),
+//                keyEquivalent: "")
+//        ]
         if regions.count > 0 {
-            regionMenuItems = regions.compactMap({
-                NSMenuItem(
-                    title: "[\($0.city ?? "Unknown")] \($0.dataCenterName ?? "Unknown")",
+            let regionMenuItems = regions.compactMap({ region  -> NSMenuItem in
+                
+                let menuItem = NSMenuItem(
+                    title: "[\(region.city ?? "Unknown")] \(region.dataCenterName ?? "Unknown")",
                     action: #selector(AppDelegate.orderABurrito),
                     keyEquivalent: "")
+                mainMenu.setSubmenu(serverMenuItems(for: region), for: menuItem)
+                
+                return menuItem
             })
+            regionMenuItems.forEach({mainMenu.addItem($0)})
         }
         
-        regionMenuItems.forEach({mainMenu.addItem($0)})
+
+//        Server.get(for: region.code!) { (servers, error) in
+//            servers?.forEach({$0.description()})
+//        }
+        
+        
         mainMenu.addItem(.separator())
         mainMenu.addItem(preferencesMenuItem)
         mainMenu.addItem(.separator())
@@ -61,5 +71,12 @@ class MenuBuilder {
     }
     
     
+    func serverMenuItems(for region: Region) -> NSMenu {
+        let menu = NSMenu(title: "[\(region.city ?? "Unknown")] \(region.dataCenterName ?? "Unknown")")
+        menu.addItem(
+            NSMenuItem(title: "No servers", action: nil, keyEquivalent: "")
+        )
+        return menu
+    }
     
 }
