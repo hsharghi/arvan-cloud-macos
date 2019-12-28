@@ -3,17 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F481C8123B54AFE003FE10B /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F481C8023B54AFE003FE10B /* Region.swift */; };
+		0F481C8423B54D94003FE10B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0F481C8323B54D94003FE10B /* Alamofire */; };
+		0F481C8723B550B0003FE10B /* ObjectMapper in Frameworks */ = {isa = PBXBuildFile; productRef = 0F481C8623B550B0003FE10B /* ObjectMapper */; };
+		0F481C8923B5512A003FE10B /* MappableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F481C8823B5512A003FE10B /* MappableModel.swift */; };
+		0F481C8B23B5FFF0003FE10B /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F481C8A23B5FFF0003FE10B /* Server.swift */; };
+		0F481C8D23B60FB6003FE10B /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F481C8C23B60FB6003FE10B /* MenuBuilder.swift */; };
 		0FACF57323B547AC00E875AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF57223B547AC00E875AC /* AppDelegate.swift */; };
 		0FACF57523B547AC00E875AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF57423B547AC00E875AC /* ViewController.swift */; };
 		0FACF57723B547B600E875AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FACF57623B547B600E875AC /* Assets.xcassets */; };
 		0FACF57A23B547B600E875AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FACF57823B547B600E875AC /* Main.storyboard */; };
+		0FACF58323B547E000E875AC /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF58223B547E000E875AC /* Env.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F481C8023B54AFE003FE10B /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		0F481C8823B5512A003FE10B /* MappableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappableModel.swift; sourceTree = "<group>"; };
+		0F481C8A23B5FFF0003FE10B /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		0F481C8C23B60FB6003FE10B /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
 		0FACF56F23B547AC00E875AC /* ArvanCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArvanCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FACF57223B547AC00E875AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FACF57423B547AC00E875AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -21,6 +32,7 @@
 		0FACF57923B547B600E875AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0FACF57B23B547B600E875AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FACF57C23B547B600E875AC /* ArvanCloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ArvanCloud.entitlements; sourceTree = "<group>"; };
+		0FACF58223B547E000E875AC /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,12 +40,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F481C8723B550B0003FE10B /* ObjectMapper in Frameworks */,
+				0F481C8423B54D94003FE10B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F481C7F23B54AE5003FE10B /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				0F481C8823B5512A003FE10B /* MappableModel.swift */,
+				0F481C8023B54AFE003FE10B /* Region.swift */,
+				0F481C8A23B5FFF0003FE10B /* Server.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 		0FACF56623B547AB00E875AC = {
 			isa = PBXGroup;
 			children = (
@@ -53,8 +77,11 @@
 		0FACF57123B547AC00E875AC /* ArvanCloud */ = {
 			isa = PBXGroup;
 			children = (
+				0F481C7F23B54AE5003FE10B /* DataModel */,
+				0FACF58223B547E000E875AC /* Env.swift */,
 				0FACF57223B547AC00E875AC /* AppDelegate.swift */,
 				0FACF57423B547AC00E875AC /* ViewController.swift */,
+				0F481C8C23B60FB6003FE10B /* MenuBuilder.swift */,
 				0FACF57623B547B600E875AC /* Assets.xcassets */,
 				0FACF57823B547B600E875AC /* Main.storyboard */,
 				0FACF57B23B547B600E875AC /* Info.plist */,
@@ -79,6 +106,10 @@
 			dependencies = (
 			);
 			name = ArvanCloud;
+			packageProductDependencies = (
+				0F481C8323B54D94003FE10B /* Alamofire */,
+				0F481C8623B550B0003FE10B /* ObjectMapper */,
+			);
 			productName = ArvanCloud;
 			productReference = 0FACF56F23B547AC00E875AC /* ArvanCloud.app */;
 			productType = "com.apple.product-type.application";
@@ -107,6 +138,10 @@
 				Base,
 			);
 			mainGroup = 0FACF56623B547AB00E875AC;
+			packageReferences = (
+				0F481C8223B54D94003FE10B /* XCRemoteSwiftPackageReference "Alamofire" */,
+				0F481C8523B550B0003FE10B /* XCRemoteSwiftPackageReference "ObjectMapper" */,
+			);
 			productRefGroup = 0FACF57023B547AC00E875AC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -133,8 +168,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FACF58323B547E000E875AC /* Env.swift in Sources */,
+				0F481C8D23B60FB6003FE10B /* MenuBuilder.swift in Sources */,
+				0F481C8923B5512A003FE10B /* MappableModel.swift in Sources */,
 				0FACF57523B547AC00E875AC /* ViewController.swift in Sources */,
+				0F481C8B23B5FFF0003FE10B /* Server.swift in Sources */,
 				0FACF57323B547AC00E875AC /* AppDelegate.swift in Sources */,
+				0F481C8123B54AFE003FE10B /* Region.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +363,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0F481C8223B54D94003FE10B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "5.0.0-rc.3";
+			};
+		};
+		0F481C8523B550B0003FE10B /* XCRemoteSwiftPackageReference "ObjectMapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tristanhimmelman/ObjectMapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0F481C8323B54D94003FE10B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0F481C8223B54D94003FE10B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		0F481C8623B550B0003FE10B /* ObjectMapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0F481C8523B550B0003FE10B /* XCRemoteSwiftPackageReference "ObjectMapper" */;
+			productName = ObjectMapper;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0FACF56723B547AC00E875AC /* Project object */;
 }
