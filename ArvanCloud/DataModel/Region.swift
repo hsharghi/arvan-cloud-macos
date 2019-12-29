@@ -23,6 +23,8 @@ class Region: MappableModel {
     var canCreate: Bool?
     var isDefault: Bool?
     var isVisible: Bool?
+    var servers: [Server]?
+    
     
     required init?(map: Map) {
         super.init(map: map)
