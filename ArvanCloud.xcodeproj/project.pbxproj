@@ -14,6 +14,7 @@
 		0F481C8B23B5FFF0003FE10B /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F481C8A23B5FFF0003FE10B /* Server.swift */; };
 		0F481C8D23B60FB6003FE10B /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F481C8C23B60FB6003FE10B /* MenuBuilder.swift */; };
 		0F6CC6D223B7AC5F00C27092 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6CC6D123B7AC5F00C27092 /* PreferencesViewController.swift */; };
+		0F6CC6D423B8E12200C27092 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F6CC6D323B8E12200C27092 /* Media.xcassets */; };
 		0FACF57323B547AC00E875AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF57223B547AC00E875AC /* AppDelegate.swift */; };
 		0FACF57523B547AC00E875AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACF57423B547AC00E875AC /* ViewController.swift */; };
 		0FACF57723B547B600E875AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FACF57623B547B600E875AC /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 		0F481C8A23B5FFF0003FE10B /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		0F481C8C23B60FB6003FE10B /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
 		0F6CC6D123B7AC5F00C27092 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		0F6CC6D323B8E12200C27092 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		0FACF56F23B547AC00E875AC /* ArvanCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArvanCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FACF57223B547AC00E875AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FACF57423B547AC00E875AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				0F481C8C23B60FB6003FE10B /* MenuBuilder.swift */,
 				0F6CC6D123B7AC5F00C27092 /* PreferencesViewController.swift */,
 				0FACF57623B547B600E875AC /* Assets.xcassets */,
+				0F6CC6D323B8E12200C27092 /* Media.xcassets */,
 				0FACF57823B547B600E875AC /* Main.storyboard */,
 				0FACF57B23B547B600E875AC /* Info.plist */,
 				0FACF57C23B547B600E875AC /* ArvanCloud.entitlements */,
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FACF57723B547B600E875AC /* Assets.xcassets in Resources */,
+				0F6CC6D423B8E12200C27092 /* Media.xcassets in Resources */,
 				0FACF57A23B547B600E875AC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
