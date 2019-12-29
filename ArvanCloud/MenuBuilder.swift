@@ -28,55 +28,115 @@ class MenuBuilder {
         self.mainMenu = menu
     }
     
-    var regions = [Region]() {
-        didSet {
-            generateMainMenuItems()
-        }
+    var regions = [Region]()
+    
+    
+    func updateMenu() {
+        mainMenu.removeAllItems()
+        generateMainMenuItems()
     }
     
-    
     func generateMainMenuItems() {
-//        var regionMenuItems = [
-//            NSMenuItem(
-//                title: "No regions",
-//                action: #selector(AppDelegate.orderABurrito),
-//                keyEquivalent: "")
-//        ]
-        if regions.count > 0 {
-            let regionMenuItems = regions.compactMap({ region  -> NSMenuItem in
-                
-                let menuItem = NSMenuItem(
-                    title: "[\(region.city ?? "Unknown")] \(region.dataCenterName ?? "Unknown")",
-                    action: #selector(AppDelegate.orderABurrito),
-                    keyEquivalent: "")
-                mainMenu.setSubmenu(serverMenuItems(for: region), for: menuItem)
-                
-                return menuItem
-            })
-            regionMenuItems.forEach({mainMenu.addItem($0)})
-        }
-        
 
-//        Server.get(for: region.code!) { (servers, error) in
-//            servers?.forEach({$0.description()})
-//        }
-        
+        regionMenuIems().forEach({mainMenu.addItem($0)})
         
         mainMenu.addItem(.separator())
         mainMenu.addItem(preferencesMenuItem)
         mainMenu.addItem(.separator())
         mainMenu.addItem(quitMenuItem)
-
         
     }
     
+    func regionMenuIems() -> [NSMenuItem] {
+        
+        guard regions.count > 0 else {
+            return []
+        }
+        
+        let regionMenuItems = regions.compactMap({ region  -> NSMenuItem in
+            
+            let menuItem = NSMenuItem(
+                title: "[\(region.city ?? "Unknown")] \(region.dataCenterName ?? "Unknown")",
+                action: #selector(AppDelegate.orderABurrito),
+                keyEquivalent: "")
+            
+            mainMenu.setSubmenu(serversMenuItems(for: region), for: menuItem)
+            
+            return menuItem
+        })
+        
+        return regionMenuItems
+    }
     
-    func serverMenuItems(for region: Region) -> NSMenu {
+    
+    
+    func serversMenuItems(for region: Region) -> NSMenu {
+        
         let menu = NSMenu(title: "[\(region.city ?? "Unknown")] \(region.dataCenterName ?? "Unknown")")
-        menu.addItem(
-            NSMenuItem(title: "No servers", action: nil, keyEquivalent: "")
-        )
+        
+
+        guard region.servers?.count ?? 0 > 0 else {
+                menu.addItem(
+                NSMenuItem(title: "No servers", action: nil, keyEquivalent: "")
+            )
+            return menu
+        }
+
+
+        for server in region.servers ?? [] {
+            let serverMenuItem = NSMenuItem(title: "\(server.name ?? "Unknown") [\(server.ip ?? "Unknown IP")]" , action: nil, keyEquivalent: "")
+            mainMenu.setSubmenu(serverActionMenu(for: server), for: serverMenuItem)
+//            [
+//                NSMenuItem(title: "Start", action: nil, keyEquivalent: ""),
+//                NSMenuItem(title: "Stop", action: nil, keyEquivalent: ""),
+//                NSMenuItem(title: "Restart", action: nil, keyEquivalent: ""),
+//                NSMenuItem(title: "Delete", action: nil, keyEquivalent: ""),
+//            ].forEach({menu.addItem($0)})
+            
+            menu.addItem(serverMenuItem)
+
+        }
         return menu
     }
     
+    
+    
+
+    func serverActionMenu(for server: Server) -> NSMenu {
+        let menu = NSMenu(title: "test")
+        let statusMenuItem = NSMenuItem(title: serverStatusText(for: server.status), action: nil, keyEquivalent: "")
+        statusMenuItem.image = NSImage(named: "active")
+        [
+            statusMenuItem,
+            NSMenuItem.separator(),
+            NSMenuItem(title: "Start", action: nil, keyEquivalent: ""),
+            NSMenuItem(title: "Stop", action: nil, keyEquivalent: ""),
+            NSMenuItem(title: "Restart", action: nil, keyEquivalent: ""),
+            NSMenuItem(title: "Delete", action: nil, keyEquivalent: ""),
+            NSMenuItem.separator(),
+            NSMenuItem(title: "Copy IP", action: #selector(AppDelegate.copyIP(sender:)), keyEquivalent: server.ip ?? ""),
+        ].forEach({menu.addItem($0)})
+        return menu
+    }
+
+
+    func serverStatusText(for status: Server.Status) -> String {
+        switch status {
+        case .active:
+            return "Active"
+
+        case .inActive:
+            return "In-active"
+        }
+    }
+    
+    @objc func noAction() {
+        
+    }
+    
+    @objc func copyIP(sender: Any) {
+        if let item = sender as? NSMenuItem {
+            print(item.keyEquivalent)
+        }
+    }
 }
