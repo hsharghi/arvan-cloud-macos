@@ -53,6 +53,13 @@ class Server: MappableModel {
     var os: String?
     var osVersion: String?
     var specs: ServerSpec?
+    private var publicAddress: [ServerInfo]? {
+        didSet {
+            if let info = publicAddress {
+                self.ip = info.first?.IP
+            }
+        }
+    }
     
     required init?(map: Map) {
         super.init(map: map)
@@ -63,12 +70,12 @@ class Server: MappableModel {
         super.mapping(map: map)
         
         id <- map["id"]
-        ip <- map["addresses.public1.addr"]
         name <- map["name"]
         status <- map["status"]
         os <- map["os"]
         osVersion <- map["os_version"]
         specs <- map["flavor"]
+        publicAddress <- map["addresses.public1"]
         
     }
     
@@ -86,6 +93,26 @@ class Server: MappableModel {
         }
 
     }
+    
+    class ServerInfo: MappableModel {
+        
+        var macAddress: String?
+        var version: Int?
+        var IP: String?
+        var type: String?
+        
+        override func mapping(map: Map) {
+            
+            super.mapping(map: map)
+            
+            macAddress <- map["mac_addr"]
+            version <- map["version"]
+            IP <- map["addr"]
+            type <- map["type"]
+            
+        }
+    }
+    
     
     
     class func get(for datacenter: String, _ completionHandler: @escaping (_ result: [Server]?, _ error: AppError?) -> Void) -> Void {
