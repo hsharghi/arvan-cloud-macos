@@ -12,7 +12,8 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     var statusBarItem: NSStatusItem!
-
+    var menuBuilder: MenuBuilder!
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
         print(toggleDockIcon(showIcon: false))
@@ -29,23 +30,43 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        let menuBuilder = MenuBuilder(menu: menu)
+        self.menuBuilder = MenuBuilder(menu: menu)
 
 
         Region.getAll { (regions, error) in
-            menuBuilder.regions = regions ?? []
+            
+            regions?.forEach { region  in
+                guard let code = region.code else {
+                    return
+                }
+                Server.get(for: code) { (servers, error) in
+                    region.servers = servers ?? []
+                    self.menuBuilder.updateMenu()
+                }
+            }
+            self.menuBuilder.regions = regions ?? []
         }
         
         
     }
     
-    @objc func orderABurrito() {
+    @objc func orderABurrito(sender: Any) {
+        print(sender)
         print("Ordering a burrito!")
     }
 
 
     @objc func cancelBurritoOrder() {
         print("Canceling your order :(")
+    }
+    
+    @objc func copyIP(sender: Any) {
+        if let item = sender as? NSMenuItem {
+            print(item.keyEquivalent)
+            NSPasteboard.general.clearContents()
+            NSPasteboard.general.setString(item.keyEquivalent, forType: .string)
+            NSPasteboard.general.string(forType: .string)
+        }
     }
     
     @objc func showPreferences() {
