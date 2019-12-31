@@ -69,7 +69,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    @objc func stop() {
+        print("Stopping server...")
+    }
+    
+    @objc func start() {
+        print("Starting server...")
+    }
+    
+    @objc func restart() {
+        print("Restarting server...")
+    }
+    
+    @objc func delete() {
+        print("koonet pare as!")
+        print("Deleting server...")
+    }
+    
     @objc func showPreferences() {
+        
+    }
+    
+    @objc func addServer() {
         
     }
 
