@@ -74,7 +74,11 @@ class MenuBuilder {
         
         let menu = NSMenu(title: "[\(region.city ?? "Unknown")] \(region.dataCenterName ?? "Unknown")")
         
-
+        let addServerItem = NSMenuItem(title: "Add server", action: #selector(AppDelegate.addServer), keyEquivalent: "")
+        addServerItem.image = NSImage(named: "add")
+        menu.addItem(addServerItem)
+        menu.addItem(.separator())
+        
         guard region.servers?.count ?? 0 > 0 else {
                 menu.addItem(
                 NSMenuItem(title: "No servers", action: nil, keyEquivalent: "")
@@ -110,9 +114,9 @@ class MenuBuilder {
             statusMenuItem,
             NSMenuItem.separator(),
             NSMenuItem(title: "Start", action: nil, keyEquivalent: ""),
-            NSMenuItem(title: "Stop", action: nil, keyEquivalent: ""),
-            NSMenuItem(title: "Restart", action: nil, keyEquivalent: ""),
-            NSMenuItem(title: "Delete", action: nil, keyEquivalent: ""),
+            NSMenuItem(title: "Stop", action: #selector(AppDelegate.stop), keyEquivalent: ""),
+            NSMenuItem(title: "Restart", action: #selector(AppDelegate.stop), keyEquivalent: ""),
+            NSMenuItem(title: "Delete", action: #selector(AppDelegate.delete), keyEquivalent: ""),
             NSMenuItem.separator(),
             NSMenuItem(title: "Copy IP", action: #selector(AppDelegate.copyIP(sender:)), keyEquivalent: server.ip ?? ""),
         ].forEach({menu.addItem($0)})
@@ -134,9 +138,4 @@ class MenuBuilder {
         
     }
     
-    @objc func copyIP(sender: Any) {
-        if let item = sender as? NSMenuItem {
-            print(item.keyEquivalent)
-        }
-    }
 }
