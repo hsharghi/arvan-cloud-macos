@@ -51,7 +51,6 @@ class MappableModel: Mappable {
             switch response.result {
                 
             case .success(let jsonString):
-                print(jsonString)
                 dataHandler(T(JSONString: jsonString), nil)
                 
             case .failure(let error):
